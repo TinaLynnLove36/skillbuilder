@@ -1,5 +1,5 @@
 //styled components
-import {StyledContainer} from './components/Styles';
+
 import SBNews from './pages/SBNews';
 import Navbar from './components/Navbar';
 import Home from './pages/Home';
@@ -12,6 +12,7 @@ import Contact from './pages/Contact';
 import Dashboard from './pages/Dashboard';
 import Explore from './pages/Explore';
 import About from './pages/About';
+import Logout from './pages/Logout';
 
 function App() {
   return (
@@ -26,11 +27,9 @@ function App() {
       <Route path='/explore' exact component={Explore} />
       <Route path='/dashboard' exact component={Dashboard} />
       <Route path='/signup' exact component={Signup} />
+      <Route path='/logout' exact component={Logout} />
     </Switch>
-    <StyledContainer>
       <Home />
-    </StyledContainer>
-   
        </Router>
   
   );

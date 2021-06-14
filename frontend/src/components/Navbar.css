@@ -45,9 +45,10 @@
   }
   
   .nav-links:hover {
-    background-color: #1888ff;
+    background-color: #160D42;
     border-radius: 4px;
     transition: all 0.2s ease-out;
+    color: white;
   }
   
   .fa-bars {
@@ -136,7 +137,7 @@
   
     .nav-links-mobile:hover {
       background: #fff;
-      color: #1888ff;
+      color: #281e83;
       transition: 250ms;
     }
   
