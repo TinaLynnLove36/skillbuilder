@@ -1,9 +1,13 @@
+import {StyledContainer} from './../components/Styles2';
 import React from 'react';
 
 export default function Login() {
     return (
         <>
-            <h1 className='login'>Login</h1>
+            <StyledContainer>
+                <div className='login'></div>
+            </StyledContainer>
+       
         </>
     );
 }
