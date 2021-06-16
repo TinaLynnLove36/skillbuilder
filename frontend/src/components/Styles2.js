@@ -20,7 +20,6 @@ export const StyledContainer = styled.div`
     min-height: 100vh;
     display: flex;
     justify-content: center;
-    align-items: stretch;
     background: linear-gradient(0deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${background});
     background-size: cover;
     background-attachment: fixed;
