@@ -1,39 +1,59 @@
-import {useAuth0} from '@auth0/auth0-react';
+import firebase from "firebase/app";
+import "firebase/auth";
 import React from 'react';
 import './Button.css';
 import { Link } from 'react-router-dom';
+import { useState, useEffect } from 'react';
 
-const Button = () => {
 
-const login = async () => {
-    const domain = "skillbuilder.us.auth0.com";
-    const audience = "https://skillbuilder.com";
-    const scope = "read:skills";
-    const clientId = "MwMk5YHG9M7V1kaI5Zpt777gzOjq1kQs";
-    const responseType = "code";
-    const redirectUri = "http://localhost:3000/dashboard";
+export default function Button() {
 
-    const response = fetch(
-        `https://${domain}/authorize?` +
-        `audience=${audience}&` +
-        `scope=${scope}&` +
-        `response_type=${responseType}&` +
-        `client_id=${clientId}&` +
-        `redirect_uri=${redirectUri}`, {
-            redirect: "manual"
+const [auth, setAuth] = useState(false || window.localStorage.getItem("auth")==='true');
+const [token, setToken] = useState('');
+
+
+useEffect(() => {
+    firebase.auth().onAuthStateChanged((userCred) => {
+        if (userCred) {
+            setAuth(true);
+            window.localStorage.setItem('auth', 'true');
+            userCred.getIdToken().then((token) => {
+                setToken(token);
+            });
         }
-    );
+    });
+}, []);
 
-    window.location.replace(response.url);
+    const loginWithGoogle = () => {
+        firebase.auth().signInWithPopup(new firebase.auth.GoogleAuthProvider())
+        .then((userCred) => {
+            if(userCred) {
+                setAuth(true);
+                window.localStorage.setItem('auth', 'true');
+        }
+    });
 };
+
+    const logoutWithGoogle = () => {
+        firebase.auth().signOut()
+        .then((userCred) => {
+            if(userCred) {
+                setAuth(false);
+                window.localStorage.setItem('auth', 'true');
+        }
+    });
+};
+
     return (
     <>
+        
+   
         <Link to='login'>
-        <button className='btn' onClick={() => login()}>Login</button>
+        <button className='btn' onClick={loginWithGoogle}>Login</button>
         </Link>
-  
+     
     </>
     );
 }
 
-export default Button;
+

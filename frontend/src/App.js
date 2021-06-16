@@ -1,5 +1,5 @@
 //styled components
-import { useAuth0 } from "@auth0/auth0-react";
+//import { useAuth0 } from "@auth0/auth0-react";
 import SBNews from "./pages/SBNews";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -14,14 +14,10 @@ import Explore from "./pages/Explore";
 import About from "./pages/About";
 import Logout from "./pages/Logout";
 
+
+
+
 function App() {
-  // const {
-  //     loginWithPopup,
-  //     loginWithRedirect,
-  //     logout,
-  //     user,
-  //     isAuthenticated}
-  //     = useAuth0()
 
   return (
     <Router>
