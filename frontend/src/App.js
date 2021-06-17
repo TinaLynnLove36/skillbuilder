@@ -20,6 +20,7 @@ import Logout from "./pages/Logout";
 function App() {
 
   return (
+    
     <Router>
       <Navbar />
       <Switch>

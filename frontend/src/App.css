@@ -47,4 +47,8 @@
     padding-top: 30px;
 }
 
+.MuiFormHelperText-root {
+    color: red !important;
+}
+
 
