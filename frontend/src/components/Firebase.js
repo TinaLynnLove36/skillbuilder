@@ -1,15 +1,18 @@
-import firebase from 'firebase/app';
-import 'firebase/auth'
+    import firebase from 'firebase';
+    
+      const  firebaseConfig = {
+        apiKey: "AIzaSyDQR6HhUxt6TDIfIWkmpOB4Ht_jZAMN3Fk",
+        authDomain: "skillbuilder-bc27c.firebaseapp.com",
+        projectId: "skillbuilder-bc27c",
+        messagingSenderId: "573929503635",
+        appId: "1:573929503635:web:f88630acbcbbc4df298666",
+      };
+      // Initialize Firebase
+      const firebaseApp = firebase.initializeApp(firebaseConfig);
+      const auth = firebase.auth();
+      //const provider = new firebase.auth.GoogleAuthProvider();
+      const db = firebase.firestore();
+      
+      export { auth, db }
 
-const app = firebase.initalizedApp({
-    apiKey: process.env.REACT_APP_FIREBASE_API_KEY,
-    authDomain: process.env.REACT_APP_FIREBASE_AUTH_DOMAIN, 
-    projectId:  process.env.REACT_APP_FIREBASE_PROJECT_ID,
-    storageBucket: process.env.REACT_APP_FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.REACT_APP_FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.REACT_APP_FIREBASE_APP_ID,
-    measurementId: process.env.REACT_APP_FIREBASE_MEASUREMENT_ID
-})
 
-export const auth = app.auth()
-export default app

@@ -1,5 +1,3 @@
-//styled components
-//import { useAuth0 } from "@auth0/auth0-react";
 import SBNews from "./pages/SBNews";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
@@ -13,6 +11,8 @@ import Dashboard from "./pages/Dashboard";
 import Explore from "./pages/Explore";
 import About from "./pages/About";
 import Logout from "./pages/Logout";
+
+
 
 
 
@@ -40,3 +40,7 @@ function App() {
 }
 
 export default App;
+
+
+
+

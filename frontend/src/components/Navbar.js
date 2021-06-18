@@ -1,12 +1,30 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Button  from './Button';
 import './Navbar.css';
 import Dropdown from './Dropdown';
+import {auth} from './Firebase'
 
 function Navbar() {
     const [click, setClick] = useState(false);
     const [dropdown, setDropdown] = useState(false);
+        const [presentUser, setPresentUser] = useState(null);
+
+
+
+useEffect(() => {
+    auth.onAuthStateChanged(user => {
+        if (user) {
+        setPresentUser({
+            uid: user.uid,
+            email: user.email
+        })
+    }
+    else {
+        setPresentUser(null);
+    }
+    })
+}, [])
 
     const handleClick = () => setClick 
     (!click);

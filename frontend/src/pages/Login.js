@@ -18,20 +18,24 @@ import {
     Field,
     ErrorMessage
 } from "formik";
+import {auth, provider} from './../components/Firebase'
+
+
 import * as Yup from 'yup';
 
 export default function Login(props) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
+  const [presentUser, setPresentUser] = useState(null);
   const paperStyle = { padding: 20, height: "70vh", width: 400 };
   const avatarStyle = { backgroundColor: "#160D42" };
   const textStyle = { bottom: 20 };
   const btnStyle = { margin: "35px 0" };
   const checkboxStyle = { top: "15px" };
   const validationSchema=Yup.object().shape({
-      email: Yup.string().email('Please enter valid email.').required('Required'),
-      password: Yup.string().required('Required')
+      email: Yup.string().email('Please enter valid email.'),
+      password: Yup.string()
   })
   const initialValues={
       email: '',
@@ -39,30 +43,40 @@ export default function Login(props) {
       remember: false
   }
 
+    const [login, setLogin] = useState({
+       
+        userEmail: '',
+        userPassword: ''
+    })
+    
+     const { userEmail, userPassword } = login;
+
   const validate = () => {
     let temp = {};
   };
 
-  const handleEmail = (e) => {
-    setEmail(e.target.value);
-  };
+const changeHandler = e => {
+        setLogin({...login, [e.target.name]: e.target.value})
+    }
 
-  const handlePassword = (e) => {
-    setPassword(e.target.value);
-  };
+    const signIn = e => {
+        e.preventDefault();
+        auth.signInWithEmailAndPassword(userEmail, userPassword).then(user =>
+        console.log(user)).catch(err => console.log(err))
+    }
 
   const handleCheck = (e) => {
     setRememberMe(e.target.checked);
   };
 
+
   const onSubmit=(values, props) => {
-      console.log(values)
-      setTimeout(() => {
-             props.resetForm()
-             props.setSubmitting(false)
-      }, 1000)
+     // console.log(values)
+      props.resetForm();
    
   }
+
+
 
   return (
     <>
@@ -81,18 +95,20 @@ export default function Login(props) {
                   <Field as={TextField}
                     label="Email"
                     placeholder="Enter email"
-                //    onChange={handleEmail}
-                    name='email'
+                    onChange={changeHandler}
+                    name='userEmail'
+                    value={userEmail}
                     fullWidth
-                    required
+                      required
                     helperText={<ErrorMessage name='email' />}
                   />
                   <Field as={TextField}
                     label="Password"
                     placeholder="Enter password"
                     type="password"
-                //    onChange={handlePassword}
-                    name='password'
+                   onChange={changeHandler}
+                    name='userPassword'
+                    value={userPassword}
                     fullWidth
                     required
                     helperText={<ErrorMessage name='password' />}
@@ -115,6 +131,7 @@ export default function Login(props) {
                     fullWidth
                     variant="contained"
                     style={btnStyle}
+                    onClick={signIn}
                     disabled={props.isSubmitting}
                   >
                     <h3>SIGN IN</h3>
