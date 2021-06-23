@@ -4,8 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "nodemon src/config/server",
-    "start": "node src/config/server"
+    "start": "nodemon --exec babel-node server.js"
   },
   "author": "",
   "license": "ISC",
@@ -17,7 +16,14 @@
     "express-jwt": "^6.0.0",
     "express-jwt-permissions": "^1.3.4",
     "express-openid-connect": "^2.4.0",
+    "express-validator": "^6.12.0",
     "firebase-admin": "^9.9.0",
     "jwks-rsa": "^2.0.3"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.14.6",
+    "@babel/node": "^7.14.7",
+    "@babel/preset-env": "^7.14.7",
+    "nodemon": "^2.0.7"
   }
 }

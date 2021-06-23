@@ -51,4 +51,11 @@
     color: red !important;
 }
 
+.test {
+    font-family: "Apple SD Gothic Neo"
+}
+
+.signup {
+    cursor: pointer
+}
 

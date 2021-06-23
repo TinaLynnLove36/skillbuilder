@@ -1,4 +1,3 @@
-
 import React from 'react';
 import './Button.css';
 import firebase from 'firebase/app';
@@ -12,34 +11,50 @@ import LogoutButton from './LogoutButton'
 
 export default function Button() {
 
-    const [presentUser, setPresentUser] = useState(null);
+     const [currentUser, setCurrentUser] = useState(null);
 
 
 
-useEffect(() => {
-    auth.onAuthStateChanged(user => {
-        if (user) {
-        setPresentUser({
-            uid: user.uid,
-            email: user.email
-        })
-    }
-    else {
-        setPresentUser(null);
-    }
+ useEffect(() => {
+     auth.onAuthStateChanged(user => {
+         if (user) {
+         setCurrentUser({
+             uid: user.uid,
+            email: user.email})
+     }
+     else {
+         setCurrentUser(null);
+     }
     })
-}, [presentUser])
+ }, [currentUser])
 
 
     return (
     <>
         
-        {presentUser ? <LogoutButton /> : (
-        <Link to='login'><button className='btn'>Login</button></Link>
+        {currentUser ? <LogoutButton /> : (
+        <Link to='/login'><button className='btn'>Login</button></Link>
         )}
     </>
     
     )}
 
+    //    {presentUser ? <LogoutButton /> : (
+    //     <Link to='login'><button className='btn'>Login</button></Link>
+    //     )}
+
+// useEffect(() => {
+//     auth.onAuthStateChanged(currentUser => {
+//         if (currentUser) {
+//         setPresentUser({
+//             uid: user.uid,
+//             email: user.email
+//         })
+//     }
+//     else {
+//         setPresentUser(null);
+//     }
+//     })
+// }, [presentUser])
 
 

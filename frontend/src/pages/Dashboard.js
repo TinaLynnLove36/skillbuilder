@@ -1,28 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import queryString from 'query-string';
+import React from 'react';
 
-const Dashboard = ({ location }) => {
-    const { code } = queryString.parse(location.search);
-    
-    const [skillData, setSkillData] = useState("none");
 
-    useEffect(() => {
-        fetch(`http:localhost:3001/skillbuilder?code=${code}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-                Accept: "application/json",
-            }   
-        })
-        .then(res => res.json())
-        .then(res => setSkillData(JSON.stringify(res)))
-    }, [code]);
-
+const Dashboard = () => {
     return (
         <>
-            <h1 className='dashboard'>{skillData}</h1>
+            <div>Dashboard</div>
         </>
     );
-}
+   
+};
 
 export default Dashboard;
